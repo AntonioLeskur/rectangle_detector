@@ -1,3 +1,5 @@
+import math
+
 a = [1, 1]
 ax = 1
 ay = 1
@@ -58,6 +60,19 @@ class ProvjeraKuta:
 
 kutevi = ProvjeraKuta(abcx, abcy)
 print(kutevi.good_to_go)
+
+def udaljenost(tocka1, tocka2):
+    return math.sqrt((tocka2[0] - tocka1[0])**2 + (tocka2[1] - tocka1[1])**2)
+
+def dijagonala_pravokutnika(tocka1, tocka2, tocka3):
+    duljina_stranice1 = udaljenost(tocka1, tocka2)
+    duljina_stranice2 = udaljenost(tocka1, tocka3)
+    duljina_stranice3 = udaljenost(tocka2, tocka3)
+    return math.sqrt(duljina_stranice1**2 + duljina_stranice2**2) if duljina_stranice1 == duljina_stranice3 else math.sqrt(duljina_stranice1**2 + duljina_stranice3**2)
+
+dijagonala = dijagonala_pravokutnika(a, b, c)
+
+print(dijagonala)
 
 
 
