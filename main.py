@@ -1,20 +1,26 @@
 import math
 
-a = [1, 1]
-ax = 1
-ay = 1
+A = [1, 1]
+ax = A[0]
+ay = A[1]
 
-b = [5, 1]
-bx = 5
-by = 1
+B = [5, 1]
+bx = B[0]
+by = B[1]
 
-c = [5, 4]
-cx = 5
-cy = 4
+C = [5, 4]
+cx = C[0]
+cy = C[1]
 
-x = []
+X = [13, 13]
+xx = X[0]
+xy = X[1]
+
+
 abcx = [ax, bx, cx]
 abcy = [ay, by, cy]
+abcdx = abcx
+abcdy = abcy
 
 def dali_su_iste_tocke(x1, x2, x3):
     if x1 == x2 or x1 == x3 or x2 == x3:
@@ -22,7 +28,7 @@ def dali_su_iste_tocke(x1, x2, x3):
     else:
         return False
 
-iste_tocke= dali_su_iste_tocke(a, b, c)
+iste_tocke= dali_su_iste_tocke(A, B, C)
 
 
 def provjera_kuta(lista, rezultat):
@@ -64,21 +70,50 @@ print(kutevi.good_to_go)
 def udaljenost(tocka1, tocka2):
     return math.sqrt((tocka2[0] - tocka1[0])**2 + (tocka2[1] - tocka1[1])**2)
 
+
+
+def izracun_tocke_D(a, b, c):
+    D = [0, 0]
+    D[0] = c[0] - b[0] + a[0]
+    D[1] = c[1] - b[1] + a[1]
+    abcdx.append(D[0])
+    abcdy.append(D[1])
+    return D
+
+print(izracun_tocke_D(A, B, C))
+
+
+print(abcdx, abcdy)
+
+def is_x_inside():
+    if xx < max(abcx) and xy < max(abcy):
+        print("X is inside!")
+    else:
+        print("X is not inside")
+
+is_x_inside()
+
+
+# DIJAGONALA PRAVOKUTNIKA I DIJAGONALA SE NE IZRAČUNAVAJU JEDNAKO
+# PROVJERI FORMULOM DALI JE JEDNO IILI DRUGO (PO DULJINAMA STRANICA)
+# I NA TEMELJU TOKA ODABERI FORMULU ZA IZRAČUN !!!!!!!!!!
+#
+# def calculate_rectangle_diagonal(a, b):
+#     # Dijagonala pravokutnika
+#     diagonal = math.sqrt((b[0] - a[0])**2 + (b[1] - a[1])**2)
+#     return diagonal
+#
+# def calculate_square_diagonal(a):
+#     # Dijagonala kvadrata
+#     diagonal = a * math.sqrt(2)
+#     return diagonal
+
 def dijagonala_pravokutnika(tocka1, tocka2, tocka3):
     duljina_stranice1 = udaljenost(tocka1, tocka2)
     duljina_stranice2 = udaljenost(tocka1, tocka3)
     duljina_stranice3 = udaljenost(tocka2, tocka3)
-    return math.sqrt(duljina_stranice1**2 + duljina_stranice2**2) if duljina_stranice1 == duljina_stranice3 else math.sqrt(duljina_stranice1**2 + duljina_stranice3**2)
+    return math.sqrt(duljina_stranice1**2 + duljina_stranice2**2) if duljina_stranice1 == duljina_stranice3 \
+        else math.sqrt(duljina_stranice1**2 + duljina_stranice3**2)
 
-dijagonala = dijagonala_pravokutnika(a, b, c)
-
+dijagonala = dijagonala_pravokutnika(A, B, C)
 print(dijagonala)
-
-
-
-
-# 1 Točke moraju biti međusobno različite.
-# 2 Pravokutnik mora biti pravilno orijentiran u ravnini, tj. točke moraju biti poredane tako da se stvore suprotni kutovi.
-# 3 Dijagonale pravokutnika se sijeku točno na sredini.
-# od 3 taočke moraju imati 2x isti x i 2x isti y
-
