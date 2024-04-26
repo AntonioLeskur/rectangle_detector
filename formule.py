@@ -49,8 +49,6 @@ def udaljenost(tocka1, tocka2):
         return math.sqrt((tocka2[0] - tocka1[0]) ** 2 + (tocka2[1] - tocka1[1]) ** 2)
 
 def dijagonala_izracun(a, b, c, d):
-    # def udaljenost_2d(tocka1, tocka2):
-    #     return math.sqrt((tocka2[0] - tocka1[0]) ** 2 + (tocka2[1] - tocka1[1]) ** 2)
     duljina_stranice1 = udaljenost(a, b)
     duljina_stranice2 = udaljenost(b, c)
     duljina_stranice3 = udaljenost(c, d)
